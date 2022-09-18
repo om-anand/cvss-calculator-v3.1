@@ -1,0 +1,733 @@
+{% extends 'template.html' %} {% block body %}
+<form action="/cvss" method="post">
+  <div class="container mt-5 mb-5 border border-dark rounded">
+    <!-- base score metrics -->
+    <div class="row p-3 bg-dark text-white">
+      <h3>Base Score Metrics</h3>
+    </div>
+
+    <div class="row">
+      <div class="col p-2">
+        <div class="row p-2">
+          <div class="col h4">Exploitability Metrics</div>
+        </div>
+
+        <div class="row">
+          <div class="col-4 h5 text-center pt-2">Attack Vector</div>
+          <div class="col-8 p-1">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-outline-dark btn-sm active">
+                <input
+                  type="radio"
+                  id="option1"
+                  name="av"
+                  value="0.85"
+                  checked
+                />Network
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input
+                  type="radio"
+                  id="option2"
+                  name="av"
+                  value="0.62"
+                />Adjacent Network
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option3" name="av" value="0.55" />Local
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input
+                  type="radio"
+                  id="option4"
+                  name="av"
+                  value="0.2"
+                />Physical
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 h5 text-center pt-2">Attack Complexity</div>
+          <div class="col-8 p-1">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-outline-dark btn-sm active">
+                <input
+                  type="radio"
+                  id="option1"
+                  name="ac"
+                  value="0.77"
+                  checked
+                />Low
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option2" name="ac" value="0.44" />High
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 h5 text-center pt-2">Privileges Required</div>
+          <div class="col-8 p-1">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-outline-dark btn-sm active">
+                <input
+                  type="radio"
+                  id="option1"
+                  name="pr"
+                  value="0.85"
+                  checked
+                />None
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option2" name="pr" value="0.62" />Low
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option3" name="pr" value="0.27" />High
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 h5 text-center pt-2">User Interaction</div>
+          <div class="col-8 p-1">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-outline-dark btn-sm active">
+                <input
+                  type="radio"
+                  id="option1"
+                  name="ui"
+                  value="0.85"
+                  checked
+                />None
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input
+                  type="radio"
+                  id="option2"
+                  name="ui"
+                  value="0.62"
+                />Required
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 h5 text-center pt-2">Scope</div>
+          <div class="col-8 p-1">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-outline-dark btn-sm active">
+                <input
+                  type="radio"
+                  id="option1"
+                  name="s"
+                  value="0"
+                  checked
+                />Unchanged
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option2" name="s" value="1" />Changed
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col p-2">
+        <div class="row p-2">
+          <div class="col h4">Impact Metrics</div>
+        </div>
+
+        <div class="row">
+          <div class="col-4 h5 text-center pt-2">Confidentiality Impact</div>
+          <div class="col-8 p-1">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-outline-dark btn-sm active">
+                <input
+                  type="radio"
+                  id="option1"
+                  name="c"
+                  value="0"
+                  checked
+                />None
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option2" name="c" value="0.22" />Low
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option3" name="c" value="0.56" />High
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 h5 text-center pt-2">Integrity Impact</div>
+          <div class="col-8 p-1">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-outline-dark btn-sm active">
+                <input
+                  type="radio"
+                  id="option1"
+                  name="i"
+                  value="0"
+                  checked
+                />None
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option2" name="i" value="0.22" />Low
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option3" name="i" value="0.56" />High
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 h5 text-center pt-2">Availability Impact</div>
+          <div class="col-8 p-1">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-outline-dark btn-sm active">
+                <input
+                  type="radio"
+                  id="option1"
+                  name="a"
+                  value="0"
+                  checked
+                />None
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option2" name="a" value="0.22" />Low
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option3" name="a" value="0.56" />High
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- temporal score metrics -->
+    <div class="row p-3 bg-dark text-white">
+      <h3>Temporal Score Metrics</h3>
+    </div>
+
+    <div class="row">
+      <div class="col p-2">
+        <div class="row">
+          <div class="col-4 h5 text-center pt-2">Exploit Code Maturity</div>
+          <div class="col-8 p-1">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-outline-dark btn-sm active">
+                <input
+                  type="radio"
+                  id="option1"
+                  name="e"
+                  value="0"
+                  checked
+                />Not Defined
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input
+                  type="radio"
+                  id="option2"
+                  name="e"
+                  value="0.91"
+                />Unproven that exploit exists
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option3" name="e" value="0.94" />Proof
+                of concept code
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input
+                  type="radio"
+                  id="option4"
+                  name="e"
+                  value="0.97"
+                />Functional exploit exists
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option5" name="e" value="1" />High
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 h5 text-center pt-2">Remediation Level</div>
+          <div class="col-8 p-1">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-outline-dark btn-smn active">
+                <input
+                  type="radio"
+                  id="option1"
+                  name="rl"
+                  value="0"
+                  checked
+                />Not Defined
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input
+                  type="radio"
+                  id="option2"
+                  name="rl"
+                  value="0.95"
+                />Official Fix
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input
+                  type="radio"
+                  id="option3"
+                  name="rl"
+                  value="0.96"
+                />Temporary Fix
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input
+                  type="radio"
+                  id="option4"
+                  name="rl"
+                  value="0.97"
+                />Workaround
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input
+                  type="radio"
+                  id="option5"
+                  name="rl"
+                  value="1"
+                />Unavailable
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 h5 text-center pt-2">Report Confidence</div>
+          <div class="col-8 p-1">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-outline-dark btn-sm active">
+                <input
+                  type="radio"
+                  id="option1"
+                  name="rc"
+                  value="0"
+                  checked
+                />Not Defined
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input
+                  type="radio"
+                  id="option2"
+                  name="rc"
+                  value="0.92"
+                />Unknown
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input
+                  type="radio"
+                  id="option3"
+                  name="rc"
+                  value="0.96"
+                />Reasonable
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option4" name="rc" value="1" />Confirmed
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- environmental score metrics -->
+    <div class="row p-3 bg-dark text-white">
+      <h3>Environmental Score Metrics</h3>
+    </div>
+
+    <div class="row">
+      <div class="col p-2">
+        <div class="row p-2">
+          <div class="col h4">Exploitability Metrics</div>
+        </div>
+
+        <div class="row">
+          <div class="col-4 h5 text-center pt-2">Attack Vector</div>
+          <div class="col-8 p-1">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-outline-dark btn-sm active">
+                <input
+                  type="radio"
+                  id="option1"
+                  name="mav"
+                  value="0"
+                  checked
+                />Not Defined
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input
+                  type="radio"
+                  id="option2"
+                  name="mav"
+                  value="0.85"
+                />Network
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input
+                  type="radio"
+                  id="option3"
+                  name="mav"
+                  value="0.62"
+                />Adjacent Network
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option4" name="mav" value="0.55" />Local
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input
+                  type="radio"
+                  id="option5"
+                  name="mav"
+                  value="0.2"
+                />Physical
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 h5 text-center pt-2">Attack Complexity</div>
+          <div class="col-8 p-1">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-outline-dark btn-sm active">
+                <input
+                  type="radio"
+                  id="option1"
+                  name="mac"
+                  value="0"
+                  checked
+                />Not Defined
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option2" name="mac" value="0.77" />Low
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option3" name="mac" value="0.44" />High
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 h5 text-center pt-2">Privileges Required</div>
+          <div class="col-8 p-1">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-outline-dark btn-sm active">
+                <input
+                  type="radio"
+                  id="option1"
+                  name="mpr"
+                  value="0"
+                  checked
+                />Not Defined
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option2" name="mpr" value="0.85" />None
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option3" name="mpr" value="0.62" />Low
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option4" name="mpr" value="0.27" />High
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 h5 text-center pt-2">User Interaction</div>
+          <div class="col-8 p-1">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-outline-dark btn-sm active">
+                <input
+                  type="radio"
+                  id="option1"
+                  name="mui"
+                  value="0"
+                  checked
+                />Not Defined
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option2" name="mui" value="0.85" />None
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input
+                  type="radio"
+                  id="option3"
+                  name="mui"
+                  value="0.62"
+                />Required
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 h5 text-center pt-2">Scope</div>
+          <div class="col-8 p-1">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-outline-dark btn-sm active">
+                <input
+                  type="radio"
+                  id="option1"
+                  name="ms"
+                  value="0"
+                  checked
+                />Not Defined
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option2" name="ms" value="0" />Unchanged
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option3" name="ms" value="1" />Changed
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col p-2">
+        <div class="row p-2">
+          <div class="col h4">Impact Metrics</div>
+        </div>
+
+        <div class="row">
+          <div class="col-4 h5 text-center pt-2">Confidentiality Impact</div>
+          <div class="col-8 p-1">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-outline-dark btn-sm active">
+                <input
+                  type="radio"
+                  id="option1"
+                  name="mc"
+                  value="0"
+                  checked
+                />Not Defined
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option2" name="mc" value="0" />None
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option3" name="mc" value="0.22" />Low
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option4" name="mc" value="0.56" />High
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 h5 text-center pt-2">Integrity Impact</div>
+          <div class="col-8 p-1">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-outline-dark btn-sm active">
+                <input
+                  type="radio"
+                  id="option1"
+                  name="mi"
+                  value="0"
+                  checked
+                />Not Defined
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option2" name="mi" value="0" />None
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option3" name="mi" value="0.22" />Low
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option4" name="mi" value="0.56" />High
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 h5 text-center pt-2">Availability Impact</div>
+          <div class="col-8 p-1">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-outline-dark btn-sm active">
+                <input
+                  type="radio"
+                  id="option1"
+                  name="ma"
+                  value="0"
+                  checked
+                />Not Defined
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option2" name="ma" value="0" />None
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option3" name="ma" value="0.22" />Low
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option4" name="ma" value="0.56" />High
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col p-2">
+        <div class="row p-2">
+          <div class="col h4">Impact Subscore Modifiers</div>
+        </div>
+
+        <div class="row">
+          <div class="col-4 h5 text-center pt-2">
+            Confidentiality Requirement
+          </div>
+          <div class="col-8 p-1">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-outline-dark btn-sm active">
+                <input
+                  type="radio"
+                  id="option1"
+                  name="cr"
+                  value="0"
+                  checked
+                />Not Defined
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option2" name="cr" value="0.5" />Low
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option3" name="cr" value="1" />Medium
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option4" name="cr" value="1.5" />High
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 h5 text-center pt-2">Integrity Requirement</div>
+          <div class="col-8 p-1">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-outline-dark btn-sm active">
+                <input
+                  type="radio"
+                  id="option1"
+                  name="ir"
+                  value="0"
+                  checked
+                />Not Defined
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option2" name="ir" value="0.5" />Low
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option3" name="ir" value="1" />Medium
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option4" name="ir" value="1.5" />High
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 h5 text-center pt-2">Availability Requirement</div>
+          <div class="col-8 p-1">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-outline-dark btn-sm active">
+                <input
+                  type="radio"
+                  id="option1"
+                  name="ar"
+                  value="0"
+                  checked
+                />Not Defined
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option2" name="ar" value="0.5" />Low
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option3" name="ar" value="1" />Medium
+              </label>
+
+              <label class="btn btn-outline-dark btn-sm">
+                <input type="radio" id="option4" name="ar" value="1.5" />High
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- submit button -->
+    <div class="row">
+      <div class="col m-4 text-center"></div>
+      <div class="col m-4 text-center">
+        <button type="submit" class="btn btn-lg btn-dark">Calculate</button>
+      </div>
+      <div class="col m-4 text-center"></div>
+    </div>
+  </div>
+</form>
+{% endblock body %}
